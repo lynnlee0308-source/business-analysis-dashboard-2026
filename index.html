@@ -127,7 +127,7 @@
       </div>
       <div class="grid two">
         <div class="card panel"><h3>Account GMV Top</h3><svg class="chart" id="channelChart"></svg><div id="accountTopTable" class="table-wrap"></div></div>
-        <div class="card panel"><h3>Channel Type / Channel</h3><div id="channelTypeTable" class="table-wrap"></div><div style="height:12px"></div><div id="channelTable" class="table-wrap"></div></div>
+        <div class="card panel"><h3>Channel Type / Channel</h3><div id="channelTable" class="table-wrap"></div></div>
       </div>
       <div class="grid two" style="margin-top:16px">
         <div class="card panel"><h3>Account增长</h3><div id="accountGrowthTable" class="table-wrap"></div></div>
@@ -289,11 +289,10 @@
       barChart('categoryChart', monthData.categoryChart, '#0f9f6e');
       document.getElementById('businessTable').innerHTML = table(monthData.business);
       document.getElementById('categoryTable').innerHTML = table(monthData.category);
-      document.getElementById('independentTable').innerHTML = table(monthData.independent);
+      document.getElementById('independentTable').innerHTML = table(monthData.independent.map(row => Object.fromEntries(Object.entries(row).filter(([key]) => key !== '费用'))));
       const ch = monthData.channel;
       barChart('channelChart', ch.channelChart, '#c67a00');
       document.getElementById('accountTopTable').innerHTML = table(ch.accountTop);
-      document.getElementById('channelTypeTable').innerHTML = table(ch.channelType);
       document.getElementById('channelTable').innerHTML = table(ch.channel);
       document.getElementById('accountGrowthTable').innerHTML = table(ch.accountGrowth);
       document.getElementById('accountDeclineTable').innerHTML = table(ch.accountDecline);
